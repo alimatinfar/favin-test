@@ -14,7 +14,7 @@ function Header({title, subTitle}: HeaderPropsType) {
       <Container className='flex justify-between items-center'>
         <div className='flex-center space-x-2 space-x-reverse'>
           <Image src={ArrowSVG} />
-          <Typography size='lg'>{title}</Typography>
+          <Typography size='md'>{title}</Typography>
         </div>
         <Typography size='md' className='text-primary'>{subTitle}</Typography>
       </Container>

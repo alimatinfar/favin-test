@@ -1,0 +1,30 @@
+/* // Adding IRANSans font */
+@font-face {
+    font-family: 'Vazir FD-WOL';
+    src: url("../public/fonts/Vazir/Vazir-Thin.woff2") format("woff2");
+    font-weight: 200;
+}
+@font-face {
+    font-family: 'Vazir FD-WOL';
+    src: url("../public/fonts/Vazir/Vazir-Light.woff2") format("woff2");
+    font-weight: 300;
+}
+@font-face {
+    font-family: 'Vazir FD-WOL';
+    src: url("../public/fonts/Vazir/Vazir.woff2") format("woff2");
+    font-weight: 400;
+}
+@font-face {
+    font-family: 'Vazir FD-WOL';
+    src: url("../public/fonts/Vazir/Vazir-Medium.woff2") format("woff2");
+    font-weight: 500;
+}
+@font-face {
+    font-family: 'Vazir FD-WOL';
+    src: url("../public/fonts/Vazir/Vazir-Bold.woff2") format("woff2");
+    font-weight: 600;
+}
+
+.font-iran-sans {
+    font-family: IRANSans, Tahoma, sans-serif !important;
+}

@@ -1,5 +1,6 @@
 import React, {ReactNode} from 'react';
 import Header, {HeaderPropsType} from "./Header";
+import Container from "../Container/Container";
 
 interface Props extends HeaderPropsType {
   children: ReactNode;
@@ -10,7 +11,9 @@ function Layout({title, subTitle, children}: Props) {
     <>
       <Header title={title} subTitle={subTitle}/>
 
-      <main>{children}</main>
+      <Container className='pt-36'>
+        {children}
+      </Container>
     </>
   );
 }

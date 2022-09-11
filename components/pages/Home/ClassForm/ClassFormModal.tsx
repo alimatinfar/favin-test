@@ -5,13 +5,14 @@ import ClassForm from "./ClassForm";
 type Props = {
   open: boolean;
   closeHandler: () => void;
+  editClassNumber: number | null;
 }
 
-function ClassFormModal({open, closeHandler}: Props) {
+function ClassFormModal({open, closeHandler, editClassNumber}: Props) {
 
   return (
     <Modal onClose={closeHandler} open={open}>
-      <ClassForm closeHandler={closeHandler} />
+      <ClassForm closeHandler={closeHandler} editClassNumber={editClassNumber} />
     </Modal>
   );
 }

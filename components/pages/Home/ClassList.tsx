@@ -12,23 +12,13 @@ const headers = [
   'ردیف', 'شماره کلاس', 'نام کلاس', 'زمان ثبت', 'ساعت', 'مشاهده'
 ]
 
-function EyeIcon() {
+function EyeIcon({onClick}:{onClick:() => void}) {
   return (
-    <Image src={EyeSVG} />
+    <Image onClick={onClick} src={EyeSVG} />
   )
 }
 
-const content = [
-  ['1', '101', 'ریاضی', '۱۴۰۱/۰۶/۲۰', '۱۲:۱۳', <EyeIcon key={1}/>],
-  ['1', '101', 'ریاضی', '۱۴۰۱/۰۶/۲۰', '۱۲:۱۳', <EyeIcon key={2}/>],
-  ['1', '101', 'ریاضی', '۱۴۰۱/۰۶/۲۰', '۱۲:۱۳', <EyeIcon key={3}/>],
-  ['1', '101', 'ریاضی', '۱۴۰۱/۰۶/۲۰', '۱۲:۱۳', <EyeIcon key={4}/>],
-  ['1', '101', 'ریاضی', '۱۴۰۱/۰۶/۲۰', '۱۲:۱۳', <EyeIcon key={5}/>],
-  ['1', '101', 'ریاضی', '۱۴۰۱/۰۶/۲۰', '۱۲:۱۳', <EyeIcon key={6}/>],
-  ['1', '101', 'ریاضی', '۱۴۰۱/۰۶/۲۰', '۱۲:۱۳', <EyeIcon key={7}/>],
-]
-
-function getClassTableContent() {
+function getClassTableContent(openEditModal:(classNumber:number) => void) {
   const allClass = Ls.get('class-list') || []
 
   const content = []
@@ -37,11 +27,12 @@ function getClassTableContent() {
     const item = allClass[itemInd]
     const index = Number(itemInd) + 1
     content.push([
-      index, item.classNumber, item.className, item.date, item.time, <EyeIcon key={itemInd}/>
+      index, item.classNumber, item.className, item.date, item.time,
+      <EyeIcon key={itemInd} onClick={() => openEditModal(item.classNumber)} />
     ])
   }
 
-  return content
+  return content.sort(function(a:any, b:any){return Number(b.classNumber) - Number(a.classNumber)})
 }
 
 
@@ -53,6 +44,7 @@ const gridClass = {
 
 function ClassList({}) {
   const [open, setOpen] = useState<boolean>(false)
+  const [editClassNumber, setEditClassNumber] = useState<number | null>(null)
 
   function openModalHandler() {
     setOpen(true)
@@ -60,6 +52,12 @@ function ClassList({}) {
 
   function closeHandler() {
     setOpen(false)
+    setEditClassNumber(null)
+  }
+
+  function openEditModal(classNumber:number) {
+    setEditClassNumber(classNumber)
+    openModalHandler()
   }
 
   return (
@@ -70,9 +68,9 @@ function ClassList({}) {
         <RefreshButton />
       </div>
 
-      <TableList gridClass={gridClass} headers={headers} content={getClassTableContent()} />
+      <TableList gridClass={gridClass} headers={headers} content={getClassTableContent(openEditModal)} />
 
-      <ClassFormModal open={open} closeHandler={closeHandler}  />
+      <ClassFormModal open={open} closeHandler={closeHandler} editClassNumber={editClassNumber} />
     </>
   );
 }

@@ -1,6 +1,7 @@
 import AddClassButton from "./AddClassButton";
 import RefreshButton from "./RefreshButton";
 import TableList from "../../UI/TableList/TableList";
+import ClassFormModal from "./ClassForm/ClassFormModal";
 
 const headers = [
   'ردیف', 'شماره کلاس', 'نام کلاس', 'زمان ثبت', 'ساعت', 'مشاهده'
@@ -32,6 +33,8 @@ function ClassList({}) {
       </div>
 
       <TableList gridClass={gridClass} headers={headers} content={content} />
+
+      <ClassFormModal />
     </>
   );
 }

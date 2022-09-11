@@ -5,6 +5,7 @@ import ClassFormModal from "./ClassForm/ClassFormModal";
 import Image from "next/image";
 import EyeSVG from '../../../public/images/svg/eye.svg'
 import {useState} from "react";
+import Ls from "../../../utils/localStorage";
 
 
 const headers = [
@@ -26,6 +27,23 @@ const content = [
   ['1', '101', 'ریاضی', '۱۴۰۱/۰۶/۲۰', '۱۲:۱۳', <EyeIcon key={6}/>],
   ['1', '101', 'ریاضی', '۱۴۰۱/۰۶/۲۰', '۱۲:۱۳', <EyeIcon key={7}/>],
 ]
+
+function getClassTableContent() {
+  const allClass = Ls.get('class-list') || []
+
+  const content = []
+
+  for(let itemInd in allClass) {
+    const item = allClass[itemInd]
+    const index = Number(itemInd) + 1
+    content.push([
+      index, item.classNumber, item.className, item.date, item.time, <EyeIcon key={itemInd}/>
+    ])
+  }
+
+  return content
+}
+
 
 const gridClass = {
   wrapperClass: 'grid-cols-8',
@@ -52,7 +70,7 @@ function ClassList({}) {
         <RefreshButton />
       </div>
 
-      <TableList gridClass={gridClass} headers={headers} content={content} />
+      <TableList gridClass={gridClass} headers={headers} content={getClassTableContent()} />
 
       <ClassFormModal open={open} closeHandler={closeHandler}  />
     </>

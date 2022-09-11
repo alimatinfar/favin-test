@@ -11,7 +11,7 @@ function ClassFormModal({open, closeHandler}: Props) {
 
   return (
     <Modal onClose={closeHandler} open={open}>
-      <ClassForm />
+      <ClassForm closeHandler={closeHandler} />
     </Modal>
   );
 }

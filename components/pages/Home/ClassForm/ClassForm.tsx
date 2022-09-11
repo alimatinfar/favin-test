@@ -6,8 +6,11 @@ import {useForm} from "react-hook-form";
 import Ls from "../../../../utils/localStorage";
 import PersianDatewithNamedMonth from "../../../../utils/DatePersianFormatter";
 
+type Props = {
+  closeHandler: () => void
+}
 
-function ClassForm({}) {
+function ClassForm({closeHandler}: Props) {
 
   const {register, handleSubmit, watch, formState: {errors}} = useForm();
 
@@ -23,6 +26,7 @@ function ClassForm({}) {
     console.log('formData', formData)
     Ls.add('class-list', [...allClass, formData])
     alert('کلاس با موفقیت اضافه شد')
+    closeHandler()
   }
 
 

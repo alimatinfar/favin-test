@@ -2,12 +2,12 @@ import React, {useState} from 'react';
 import Modal from "../../../UI/Modal/Modal";
 import ClassForm from "./ClassForm";
 
-function ClassFormModal({}) {
-  const [open, setOpen] = useState<boolean>(true)
+type Props = {
+  open: boolean;
+  closeHandler: () => void;
+}
 
-  function closeHandler() {
-    setOpen(false)
-  }
+function ClassFormModal({open, closeHandler}: Props) {
 
   return (
     <Modal onClose={closeHandler} open={open}>

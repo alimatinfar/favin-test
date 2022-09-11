@@ -30,7 +30,7 @@ function Input(
             {label}
           </Typography>
         </label>
-        <div className='flex-1'>
+        <div className='space-y-3 flex-1'>
           {isTextArea ? (
             <textarea
               {...(register ? register(name!, options!) : {})}
@@ -40,7 +40,7 @@ function Input(
               {...(defaultValue && {defaultValue: defaultValue})}
               placeholder={placeholder}
               className={inputClassName}
-              rows="4"
+              rows={4}
             />
           ) : (
             <input
@@ -53,14 +53,15 @@ function Input(
               className={inputClassName}
             />
           )}
+          {errorMessage && (
+            <Typography size='xs' className='text-red-500'>
+              {errorMessage.toString()}
+            </Typography>
+          )}
         </div>
 
       </div>
-      {errorMessage && (
-        <Typography size='xs' className='text-red-500'>
-          {errorMessage.toString()}
-        </Typography>
-      )}
+
     </>
   );
 }
